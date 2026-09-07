@@ -134,7 +134,13 @@
       border-radius: 14px;
       box-shadow: 0 8px 22px rgba(29, 78, 216, 0.08);
       overflow: hidden;
+      display: flex;
+      flex-direction: column;
     }
+
+    /* Keep the personal rank summary directly before the public top lists. */
+    .result-card > .rank-table { order: 2; }
+    .result-card > #rankLists { order: 3; }
 
     .result-title {
       padding: 16px;
@@ -430,7 +436,7 @@ th {
   <span>Stenotypist Candidates</span>
   <span id="stenotypistCount">-</span>
 </div>
-  <div class="top-section">
+  <div class="top-section" id="rankLists">
 
   <!-- Overall Top 10 -->
   <h3>Overall Top 10</h3>
