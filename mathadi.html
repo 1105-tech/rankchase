@@ -689,6 +689,19 @@ th {
 
 <script>
 
+// The legacy markup places this table later in the document. Move the real
+// element before the public rank lists so it displays in the intended order.
+function placeRankSummaryBeforeTopLists() {
+  const rankSummary = document.querySelector("#result .rank-table");
+  const rankLists = document.getElementById("rankLists");
+
+  if (rankSummary && rankLists && rankLists.parentNode) {
+    rankLists.parentNode.insertBefore(rankSummary, rankLists);
+  }
+}
+
+placeRankSummaryBeforeTopLists();
+
 async function submitCandidate() { 
   const consentCheckbox =
   document.getElementById("consentCheckbox");
