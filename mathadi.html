@@ -768,20 +768,19 @@ window.dataLayer.push({
       "https://your-rank-api.c2721383.workers.dev";
 
 
-    const submitUrl =
-      workerUrl +
-      "/submit?url=" +
-      encodeURIComponent(tcsUrl) +
-      "&category=" +
-      encodeURIComponent(category) +
-      "&gender=" +
-      encodeURIComponent(gender) +
-      "&horizontal=" +
-      encodeURIComponent(horizontal);
-
-
     const response =
-      await fetch(submitUrl);
+      await fetch(workerUrl + "/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          url: tcsUrl,
+          category,
+          gender,
+          horizontal_reservation: horizontal
+        })
+      });
 
 
     const data =
