@@ -18,6 +18,10 @@
     input,select{width:100%;box-sizing:border-box;padding:12px;border:1px solid #ccc;border-radius:7px;background:#fff;font-size:14px}
     .hint{font-size:12px;color:#666;line-height:1.5;margin-top:6px}
     .submit-btn{width:100%;margin-top:20px;border:0;background:#111;color:#fff;padding:13px;border-radius:7px;font-weight:bold;font-size:15px;cursor:pointer}
+    .consent-box{margin:15px 0 0;font-size:12px;color:#666;line-height:1.5;width:100%}
+    .consent-box label{display:flex;align-items:center;justify-content:center;gap:8px;cursor:pointer;width:100%;font-size:12px;font-weight:normal;margin:0}
+    .consent-box input[type="checkbox"]{width:auto;margin:0;flex-shrink:0}
+    .consent-box span{display:block;text-align:center;white-space:normal}
     .submit-btn:hover{opacity:.9}
     .notice{background:#f8f8f8;border:1px solid #e1e1e1;border-radius:8px;padding:12px;font-size:12px;line-height:1.5;margin-top:15px}
     .telegram{display:block;width:fit-content;margin:18px auto 0;padding:10px 20px;background:#229ED9;color:#fff;text-decoration:none;border-radius:8px;font-weight:bold}
@@ -119,6 +123,17 @@
       <option>Telugu</option>
     </select>
 
+    <div class="consent-box">
+      <label>
+        <input type="checkbox" id="consentCheckbox">
+        <span>
+          By submitting this form, you allow RankChase to process your RRB response data
+          to calculate your score, rank, and related analysis. Your data may also be used
+          in aggregated and non-personal form to improve RankChase insights.
+        </span>
+      </label>
+    </div>
+
     <button class="submit-btn" id="submitBtn">CHECK SCORE &amp; RANK</button>
 
     <div class="notice">
@@ -140,9 +155,6 @@
     </div>
   </div>
 
-  <div class="notice" style="margin-top:15px;">
-      By submitting this form, you agree to let RankChase use your exam response data to calculate your score, rank, and related analysis. Your data may also be used in an aggregated and non-personal way to improve RankChase insights.
-    </div>
 
     <a class="telegram" href="https://t.me/RankChaseOfficial">📢 Join RANKCHASE Telegram</a>
 </div>
@@ -168,6 +180,12 @@ document.getElementById("submitBtn").addEventListener("click", async function ()
   const required = ["response_url","category","gender","rrb_zone","paper_language"];
   if (required.some(k => !fields[k])) {
     alert("Please fill all required fields.");
+    return;
+  }
+
+  const consentCheckbox = document.getElementById("consentCheckbox");
+  if (!consentCheckbox.checked) {
+    alert("Please agree to the consent before submitting.");
     return;
   }
 
